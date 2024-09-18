@@ -5,6 +5,14 @@ GET http://localhost:5020
 GET http://localhost:5020/produto/listar
 
 ### Cadastrar Produto
-POST http://localhost:5020/produto/cadastrar/agua
+POST http://localhost:5020/produto/cadastrar
+Content-Type: application/json
 
+{
+    "nome" : "Bolacha",
+    "preco" : 4.5,
+    "quantidade" : 10
+}
 
+### Buscar Produto
+GET http://localhost:5020/produto/buscar/agua
