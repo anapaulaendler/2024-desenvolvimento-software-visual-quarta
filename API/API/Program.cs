@@ -6,45 +6,28 @@
 
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Sqlite;
+using Microsoft.EntityFrameworkCore.Design;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 
-List<Produto> produtos = new List<Produto>();
-produtos.Add(new Produto()
-{
-    Nome = "Notebook",
-    Preco = 5000,
-    Quantidade = 54
-});
-produtos.Add(new Produto()
-{
-    Nome = "Desktop",
-    Preco = 3500,
-    Quantidade = 150
-});
-produtos.Add(new Produto()
-{
-    Nome = "Monitor",
-    Preco = 1200,
-    Quantidade = 15
-});
-produtos.Add(new Produto()
-{
-    Nome = "Caixa de Som",
-    Preco = 650,
-    Quantidade = 70
-});
-
+List<Produto> produtos =
+[
+    new Produto() { Nome = "Notebook", Preco = 5000, Quantidade = 54 },
+    new Produto() { Nome = "Desktop", Preco = 3500, Quantidade = 150 },
+    new Produto() { Nome = "Monitor", Preco = 1200, Quantidade = 15 },
+    new Produto() { Nome = "Caixa de Som", Preco = 650, Quantidade = 70 },
+];
 
 //EndPoints - Funcionalidades
 //Request - Configurar a URL e o método/verbo HTTP
 //Reponse - Retornar os dados (json/xml) e 
 app.MapGet("/", () => "API de Produtos");
 
-//GET: /produto/listar
-app.MapGet("/produto/listar", () =>
+//GET: /api/produto/listar
+app.MapGet("/api/produto/listar", () =>
 {
     if (produtos.Count > 0)
     {
@@ -53,54 +36,48 @@ app.MapGet("/produto/listar", () =>
     return Results.NotFound();
 });
 
-app.MapGet("/produto/buscar/{nome}", (string nome) => {
-    foreach(Produto produtoCadastrado in produtos)
+//GET: /api/produto/buscar/{id}
+app.MapGet("/api/produto/buscar/{id}", ([FromRoute] string id) =>
+{
+    Produto? produto = produtos.Find(x => x.Id == id);
+    if (produto == null)
     {
-        if (produtoCadastrado.Nome == nome)
-        {
-            return Results.Ok(produtoCadastrado);
-        }
+        return Results.NotFound();
     }
-    return Results.NotFound();
+    return Results.Ok(produto);
 });
-//POST: /produto/cadastrar
-app.MapPost("/produto/cadastrar", 
-    ([FromBody] Produto produto) =>
+
+//POST: /api/produto/cadastrar/param_nome
+app.MapPost("/api/produto/cadastrar", ([FromBody] Produto produto) =>
 {
     produtos.Add(produto);
     return Results.Created("", produto);
-    /*
-    //Criar o objeto e preencher
-    Produto produto = new Produto();
-    produto.Nome = nome;
-    //Adicionando dentro da lista
-    produtos.Add(produto);
-    return Results.Ok(produtos);
-    */
 });
 
-//Criar um funcionalidade para receber informações
-// - Receber informações pela URL da req
-// - Receber informações pelo corpo da req
-//Guardar as informações em uma lista
+//DELETE: /api/produto/deletar/{id}
+app.MapDelete("/api/produto/deletar/{id}", ([FromRoute] string id) =>
+{
+    Produto? produto = produtos.Find(x => x.Id == id);
+    if (produto == null)
+    {
+        return Results.NotFound();
+    }
+    produtos.Remove(produto);
+    return Results.Ok(produto);
+});
+
+//PUT: /api/produto/alterar/{id}
+app.MapPut("/api/produto/alterar/{id}", ([FromRoute] string id, [FromBody] Produto produtoAlterado) =>
+{
+    Produto? produto = produtos.Find(x => x.Id == id);
+    if (produto == null)
+    {
+        return Results.NotFound();
+    }
+    produto.Nome = produtoAlterado.Nome;
+    produto.Quantidade = produtoAlterado.Quantidade;
+    produto.Preco = produtoAlterado.Preco;
+    return Results.Ok(produto);
+});
 
 app.Run();
-
-//C# - Utilização dos gets e sets
-// Produto produto = new Produto()
-// {
-//     Nome = "",
-//     Preco = 5,
-//     Quantidade = 150
-// };
-// Console.WriteLine("Preço: " + produto.Preco);
-
-//JAVA - Utilização dos gets e sets
-// Produto produto = new Produto();
-// produto.setPreco(5);
-// Console.WriteLine("Preço: " + 
-//     produto.getPreco());
-
-/* exercicios:
-    remover produto 
-    aterar produto */

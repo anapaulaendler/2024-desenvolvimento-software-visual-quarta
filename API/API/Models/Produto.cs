@@ -10,19 +10,10 @@ public class Produto
     }
     //C# - Atributo com get e set
     public string? Id { get; set; }
+    /* Por padrão, o Entity Framework interpreta uma propriedade que é chamada de ID ou 
+    nome_classeID como sendo a chave primária. */
     public string? Nome { get; set; }
     public double Preco { get; set; }
     public int Quantidade { get; set; }
     public DateTime CriadoEm { get; set; }
-
-    //JAVA - Atributo com get e set
-    // private double preco;
-    // public double getPreco()
-    // {
-    //     return preco;
-    // }
-    // public void setPreco(double preco)
-    // {
-    //     this.preco = preco * 3;
-    // }
 }
