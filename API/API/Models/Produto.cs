@@ -12,6 +12,7 @@ public class Produto
     public string? Id { get; set; }
     /* Por padrão, o Entity Framework interpreta uma propriedade que é chamada de ID ou 
     nome_classeID como sendo a chave primária. */
+    public string? Descricao { get; set; }
     public string? Nome { get; set; }
     public double Preco { get; set; }
     public int Quantidade { get; set; }

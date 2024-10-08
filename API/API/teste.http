@@ -26,6 +26,6 @@ Content-Type: application/json
 
 {
     "nome" : "Água",
-    "valor" : 4.5,
+    "preco" : 4.5,
     "quantidade" : 153
 }
