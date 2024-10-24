@@ -4,49 +4,57 @@
 // 4 - II deve ser exportado
 
 import { useEffect, useState } from "react";
+import { Produto } from '../Models/Produto';
 
 function ProdutoListar() {
     // não precisa, mas é bom deixar o mesmo nome pra arquivo e função
 
-    const [cepInfo, setCepInfo] = useState(null);
+    const [produtos, setProdutos] = useState<Produto[]>([]);
 
     useEffect(() => {
         // funcao utilizada para executar algum codigo ao abrir / renderizar o componente
         // AXIOS: biblioteca de requisicoes
-        fetch("https://viacep.com.br/ws/01001000/json/")
+        fetch("http://localhost:5020/api/produto/listar")
         .then(resposta => {
+            if (!resposta.ok) {
+                throw new Error('Erro na requisição: ' + resposta.statusText);
+            }
             return resposta.json();
         })
-        .then(cep => {
-            console.log(cep);
-            setCepInfo(cep);
+        .then(dados => {
+            setProdutos(dados);
         })
         .catch(erro => {
             console.log("Erro: ", erro);
         });
-    });
-
-    /* TAREFA:
-    exibir alguma info do cep no navegador (na div)
-    realizar requisicao da api
-    resolver o problema que vai ser mostrado no console
-    exibir a lista de proodutos no navegador */
+    }, []);
     
     return (
         <>
-            <h1>informações do cep</h1>
-            <div>
-                {cepInfo ? (
-                    <div>
-                        <p>CEP: {cepInfo.cep}</p>
-                        <p>Logradouro: {cepInfo.logradouro}</p>
-                        <p>Bairro: {cepInfo.bairro}</p>
-                        <p>Cidade: {cepInfo.localidade}</p>
-                        <p>Estado: {cepInfo.uf}</p>
-                    </div>
-                ) : (
-                    <p>Carregando informações...</p>
-                )}
+        <div>
+            <h1>Lista de Produtos</h1>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Preço</th>
+                        <th>Quantidade</th>
+                        <th>Criado Em</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {produtos.map(produto => (
+                        <tr key={produto.id}>
+                            <td>{produto.id}</td>
+                            <td>{produto.nome}</td>
+                            <td>{produto.descricao}</td>
+                            <td>{produto.preco}</td>
+                            <td>{produto.quantidade}</td>
+                            <td>{new Date(produto.criadoEm).toLocaleDateString()}</td>
+                        </tr>
+                    ))}
+                </tbody>
             </div>
         </>
         // fragmento
