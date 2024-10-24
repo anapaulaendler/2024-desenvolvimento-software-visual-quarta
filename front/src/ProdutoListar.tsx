@@ -3,10 +3,13 @@
 // 3 - II deve RETORNAR UM componente / elemento html
 // 4 - II deve ser exportado
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function ProdutoListar() {
     // não precisa, mas é bom deixar o mesmo nome pra arquivo e função
+
+    const [cepInfo, setCepInfo] = useState(null);
+
     useEffect(() => {
         // funcao utilizada para executar algum codigo ao abrir / renderizar o componente
         // AXIOS: biblioteca de requisicoes
@@ -16,7 +19,11 @@ function ProdutoListar() {
         })
         .then(cep => {
             console.log(cep);
+            setCepInfo(cep);
         })
+        .catch(erro => {
+            console.log("Erro: ", erro);
+        });
     });
 
     /* TAREFA:
@@ -27,7 +34,20 @@ function ProdutoListar() {
     
     return (
         <>
-
+            <h1>informações do cep</h1>
+            <div>
+                {cepInfo ? (
+                    <div>
+                        <p>CEP: {cepInfo.cep}</p>
+                        <p>Logradouro: {cepInfo.logradouro}</p>
+                        <p>Bairro: {cepInfo.bairro}</p>
+                        <p>Cidade: {cepInfo.localidade}</p>
+                        <p>Estado: {cepInfo.uf}</p>
+                    </div>
+                ) : (
+                    <p>Carregando informações...</p>
+                )}
+            </div>
         </>
         // fragmento
     );
