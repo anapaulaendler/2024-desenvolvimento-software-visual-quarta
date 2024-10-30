@@ -7,6 +7,7 @@ public class AppDataContext : DbContext
 {
     //Informar quais as classes serão tabelas no banco de dados
     public DbSet<Produto> Produtos { get; set; }
+    public DbSet<Categoria> Categorias { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

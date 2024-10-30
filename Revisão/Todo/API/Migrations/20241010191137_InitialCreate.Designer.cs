@@ -11,38 +11,30 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20241008201534_AddDescricaoTableProdutos")]
-    partial class AddDescricaoTableProdutos
+    [Migration("20241010191137_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
 
-            modelBuilder.Entity("API.Models.Produto", b =>
+            modelBuilder.Entity("API.Models.Tarefa", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("TarefaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CriadoEm")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Descricao")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Preco")
-                        .HasColumnType("REAL");
+                    b.HasKey("TarefaId");
 
-                    b.Property<int>("Quantidade")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Produtos");
+                    b.ToTable("Tarefas");
                 });
 #pragma warning restore 612, 618
         }

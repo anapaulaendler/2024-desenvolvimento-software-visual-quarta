@@ -5,7 +5,7 @@ GET http://localhost:5020
 GET http://localhost:5020/api/produto/listar
 
 ### Buscar produto
-GET http://localhost:5020/api/produto/buscar/fc05e072-842a-460a-9e44-1573b87fa95
+GET http://localhost:5020/api/produto/buscar/e05cc469-d0df-462e-82ae-5153aaf3f540
 
 ### Cadastrar produto
 POST http://localhost:5020/api/produto/cadastrar
@@ -13,15 +13,16 @@ Content-Type: application/json
 
 {
     "nome" : "Água",
-    "valor" : 4.5,
-    "quantidade" : 153
+    "preco" : 4.5,
+    "quantidade" : 153,
+    "descricao" : "Alimento"
 }
 
 ### Deletar produto
-DELETE http://localhost:5020/api/produto/deletar/a33a2763-c526-43ce-a901-37fb7f2ef14b
+DELETE http://localhost:5020/api/produto/deletar/eef38bd9-3752-4f7e-b0fd-5bb95c88da05
 
 ### Alterar produto
-PUT http://localhost:5020/api/produto/alterar/ab73d311-35dc-42cc-a5d2-140279ff08ac
+PUT http://localhost:5020/api/produto/alterar/32b786e5-484a-4a20-93cf-6bf928175e7d
 Content-Type: application/json
 
 {
@@ -29,3 +30,4 @@ Content-Type: application/json
     "preco" : 4.5,
     "quantidade" : 153
 }
+
