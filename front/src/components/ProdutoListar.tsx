@@ -4,7 +4,7 @@
 // 4 - II deve ser exportado
 
 import { useEffect, useState } from "react";
-import { Produto } from '../Models/Produto';
+import { Produto } from '../interfaces/Produto';
 
 function ProdutoListar() {
     // não precisa, mas é bom deixar o mesmo nome pra arquivo e função

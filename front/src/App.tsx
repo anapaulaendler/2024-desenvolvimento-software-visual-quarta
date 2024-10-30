@@ -1,5 +1,5 @@
 import React from "react";
-import ProdutoListar from "./ProdutoListar";
+import ProdutoListar from "./components/ProdutoListar";
 //1 - Um componente SEMPRE deve começar com a primeira letra
 //maiúscula
 //2 - Todo componente DEVE ser uma função do JS
@@ -7,11 +7,6 @@ import ProdutoListar from "./ProdutoListar";
 function App() {
   return (
     <div>
-      <ProdutoListar></ProdutoListar>
-      <ProdutoListar></ProdutoListar>
-      <ProdutoListar></ProdutoListar>
-      <ProdutoListar></ProdutoListar>
-      <ProdutoListar></ProdutoListar>
       <ProdutoListar></ProdutoListar>
     </div>
   );
