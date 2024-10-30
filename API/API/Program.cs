@@ -10,6 +10,12 @@ using Microsoft.EntityFrameworkCore.Sqlite;
 using Microsoft.EntityFrameworkCore.Design;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors(options => 
+    options.AddPolicy("Acesso total", configs =>
+    configs
+    .AllowAnyOrigin()
+    .AllowAnyHeader()
+    .AllowAnyMethod));
 var app = builder.Build();
 
 
@@ -80,4 +86,5 @@ app.MapPut("/api/produto/alterar/{id}", ([FromRoute] string id, [FromBody] Produ
     return Results.Ok(produto);
 });
 
+app.UseCors("Acesso total");
 app.Run();
