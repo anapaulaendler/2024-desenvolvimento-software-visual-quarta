@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 function ConsultarCEP(){    
-
+    // em reacts vars sao chamadas de estados
     const [cep, setCep] = useState("");
     const [bairro, setBairro] = useState("");
     const [estado, setEstado] = useState("");

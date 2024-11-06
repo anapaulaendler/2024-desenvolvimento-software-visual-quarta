@@ -1,10 +1,11 @@
 import React from 'react';
-import ConsultarCEP from './ConsultarCEP';
+import ConsultarCEP from './components/examples/ConsultarCEP';
+import ProdutoListar from './components/pages/produto/ProdutoListar';
 
 function App() {
   return (
     <div>
-      <ConsultarCEP/>
+      <ProdutoListar/>
     </div>
   );
 }
