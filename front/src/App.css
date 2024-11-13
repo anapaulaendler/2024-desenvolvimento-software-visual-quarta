@@ -1,0 +1,108 @@
+/* Define a cor de fundo e a cor do texto do corpo */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fce4ec; /* Um rosa suave */
+    color: #4a148c; /* Cor roxa para texto */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* O container principal do app */
+  #app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Estilizando a barra de navegação */
+  nav {
+    width: 100%;
+    background-color: #f8bbd0; /* Um tom de rosa mais claro */
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px 0;
+    margin-bottom: 30px;
+  }
+  
+  /* Lista de links de navegação */
+  nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Estilizando cada item da lista */
+  nav ul li {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  /* Links dentro da navegação */
+  nav ul li a {
+    text-decoration: none;
+    color: #d81b60; /* Cor rosa mais forte */
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* Efeito hover nos links */
+  nav ul li a:hover {
+    color: #f50057; /* Rosa vibrante */
+    transform: scale(1.1);
+  }
+  
+  /* Estilo das páginas principais (ProdutoListar, ProdutoCadastrar, etc.) */
+  h1 {
+    color: #c2185b; /* Tom mais escuro de rosa */
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Adicionando um fundo fofo aos componentes de conteúdo */
+  div > * {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 80%;
+  }
+  
+  /* Estilo para botões */
+  button {
+    background-color: #f06292; /* Rosa suave */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Efeito de hover nos botões */
+  button:hover {
+    background-color: #ec407a; /* Rosa mais vibrante */
+  }
+  
+  /* Inputs e campos de texto */
+  input, textarea {
+    border: 2px solid #f06292;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  /* Foco nos campos de entrada */
+  input:focus, textarea:focus {
+    border-color: #ec407a;
+    outline: none;
+    box-shadow: 0 0 5px rgba(236, 64, 122, 0.8);
+  }
+  
